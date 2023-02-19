@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Check for Prime Numbers</title>
+  </head>
+  <body>
+  
+    <h1>Exercise 1</h1>
+	
+    <p>Enter a positive integer number greater than 1:</p>
+	
+    <input type="number" id="userNumber">
+	
+    <button onclick="ShowAllPrimeNumbers()">Continue</button>
+	
+	<p></p>
+    <div id="output"></div>
+
+    <script>
+      function PrimeNumber(n) {
+        if (n <= 1) {
+          return false;
+        }
+        for (let i = 2; i <= Math.sqrt(n); i++) {
+          if (n % i === 0) {
+            return false;
+          }
+        }
+        return true;
+      }
+
+      function ShowAllPrimeNumbers() 
+	  {
+        const userNumber = document.getElementById("userNumber");
+		
+        const output = document.getElementById("output");
+		
+        const n = Number(userNumber.value);
+
+        if (isNaN(n) || n <= 1 || !Number.isInteger(n)) 
+		{
+          output.innerHTML = "Input must be greater than 1.";
+          return;
+        }
+
+        let primeNumbers = [];
+		
+        for (let i = 2; i <= n; i++) 
+		{
+          if (PrimeNumber(i)) 
+		  {
+            primeNumbers.push(i);
+          }
+		  
+        }
+
+        if (primeNumbers.length === 0) 
+		{
+          output.innerHTML = `There are no prime numbers less than or equal to ${n}.`;
+        } 
+		else 
+		{
+          output.innerHTML = `The prime numbers that are less than or equal to ${n}: ${primeNumbers.join(", ")}.`;
+        }
+      }
+    </script>
+  </body>
+</html>
